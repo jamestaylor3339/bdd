@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ERPBLKK806"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-ERPBLKK806");
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Filing for VA Benefits while in Service | BDD.transition.mil</title>
+
+  <!-- Bootstrap 5 (grid, navbar collapse, accordion collapse) -->
+  <link href="https://static.skillbridge.mil/lib/bootstrap/5.3.3/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Public Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       Tokens (match tapevents.mil/bdd)
+       ========================================================= */
+    :root {
+      --ink: #162e51;
+      --ink-2: #0b1b30;
+      --blue: #005ea2;
+      --blue-dark: #1a4480;
+      --gray-band: #f4f5f5;
+      --line: #dfe1e2;
+      --line-strong: #a9aeb1;
+      --text: #1b1b1b;
+      --text-muted: #565c65;
+      --open: #008817;
+      --soon: #c9971a;
+      --closed: #c0350a;
+      --white: #fff;
+      --measure: 68ch;
+      --pad: clamp(1rem, 4vw, 2.5rem);
+
+      /* Bring Bootstrap's defaults in line with the design */
+      --bs-body-font-family: "Public Sans", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --bs-body-color: var(--text);
+      --bs-link-color-rgb: 0, 94, 162;
+      --bs-link-hover-color-rgb: 26, 68, 128;
+      --bs-border-radius: 2px;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--text);
+      font-family: var(--bs-body-font-family);
+      font-size: 17px;
+      line-height: 1.55;
+      font-variant-numeric: tabular-nums;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      color: inherit;
+      line-height: 1.15;
+      letter-spacing: -.015em;
+      font-weight: 700;
+    }
+
+    p { margin: 0 0 1rem; }
+
+    a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    a:hover { color: var(--blue-dark); }
+
+    :where(a, button, input) { -webkit-tap-highlight-color: rgba(0, 94, 162, .18); }
+    :where(p, li, dd, a) { overflow-wrap: anywhere; }
+    img, svg { max-width: 100%; }
+
+    :focus-visible {
+      outline: 3px solid #ffbe2e !important;
+      outline-offset: 2px;
+      box-shadow: none !important;
+    }
+
+    /* Layout wrapper: overrides Bootstrap .container widths */
+    .wrap.container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: max(var(--pad), env(safe-area-inset-left));
+      padding-right: max(var(--pad), env(safe-area-inset-right));
+    }
+
+    .measure { max-width: var(--measure); }
+    main section { scroll-margin-top: 5rem; }
+
+    /* Accessibility */
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 2000;
+      background: var(--white);
+      color: var(--ink);
+      padding: .75rem 1rem;
+    }
+
+    .skip:focus { left: .5rem; top: .5rem; }
+
+    /* =========================================================
+       Government banner
+       ========================================================= */
+    .usa-banner {
+      background: #eee;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+      font-size: .78rem;
+    }
+
+    .usa-banner__header .wrap {
+      display: flex;
+      align-items: center;
+      min-height: 32px;
+    }
+
+    .usa-banner__header-text {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: .3rem 0;
+    }
+
+    .usa-banner__flag { width: 16px; height: 10px; flex: none; }
+
+    .usa-banner__button {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      color: var(--blue);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      margin: 0;
+      padding: .25rem 1rem .25rem 0;
+      position: relative;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .usa-banner__button::after {
+      content: "";
+      position: absolute;
+      right: .1rem;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-65%) rotate(45deg);
+      transition: transform .15s ease;
+    }
+
+    .usa-banner__button[aria-expanded="true"]::after { transform: translateY(-25%) rotate(225deg); }
+
+    .usa-banner__content { border-top: 1px solid #c9c9c9; }
+    .usa-banner__content .wrap { padding-top: 1rem; padding-bottom: 1.1rem; }
+
+    .usa-banner__guidance {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: .9rem;
+      align-items: start;
+    }
+
+    .usa-banner__icon { width: 40px; height: 40px; color: #2378c3; }
+
+    .usa-banner__guidance p {
+      margin: 0;
+      font-size: .8rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    .usa-banner__guidance strong {
+      display: block;
+      color: var(--text);
+      font-size: .84rem;
+      margin-bottom: .1rem;
+    }
+
+    .usa-banner__guidance strong.inline { display: inline; font-size: inherit; }
+
+    .usa-banner__lock {
+      display: inline-block;
+      width: 11px;
+      height: 14px;
+      vertical-align: -2px;
+      margin: 0 .15rem;
+    }
+
+    /* =========================================================
+       Masthead
+       ========================================================= */
+    .mast {
+      background: var(--white);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+      padding: 0;
+    }
+
+    .mast .wrap {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      min-height: 66px;
+    }
+
+    .brand { display: flex; align-items: center; margin: 0; padding: 0; }
+
+    .brand img {
+      display: block;
+      width: clamp(210px, 25vw, 300px);
+      height: auto;
+    }
+
+    .mast .navbar-nav { gap: 1.4rem; }
+
+    .mast .nav-link {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 600;
+      min-height: 44px;
+      padding: .65rem 0;
+      border-bottom: 3px solid transparent;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .mast .nav-link:hover,
+    .mast .nav-link:focus {
+      color: var(--text);
+      border-bottom-color: var(--blue);
+    }
+
+    .mast .navbar-toggler {
+      margin-left: auto;
+      border: 2px solid var(--line-strong);
+      border-radius: 2px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: .35rem .55rem;
+    }
+
+    .mast .navbar-toggler:focus { box-shadow: none; }
+
+    /* =========================================================
+       Hero
+       ========================================================= */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .05) 0 1px, transparent 1px 56px);
+    }
+
+    .hero > .wrap {
+      position: relative;
+      z-index: 1;
+      padding-top: clamp(2.25rem, 5vw, 4rem);
+      padding-bottom: clamp(2.25rem, 5vw, 4rem);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.4vw, 3.25rem);
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .hero .kicker {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #9fd4ff;
+      margin: 0 0 .85rem;
+    }
+
+    .hero .kicker:empty { display: none; }
+
+    .hero .lede {
+      font-size: clamp(1.05rem, 1.6vw, 1.24rem);
+      font-weight: 400;
+      color: #e6ecf3;
+      margin: 1.1rem 0 1.4rem;
+      max-width: 46ch;
+    }
+
+    .hero .hero-body {
+      color: #c9d5e2;
+      font-size: .98rem;
+      max-width: 52ch;
+    }
+
+    .hero .hero-body p { margin: 0; }
+    .hero .hero-body strong { color: #fff; font-weight: 600; }
+    .hero a { color: #9fd4ff; }
+
+    /* =========================================================
+       Calculator
+       ========================================================= */
+    .calc {
+      background: var(--white);
+      color: var(--text);
+      border-top: 6px solid var(--blue);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .28);
+    }
+
+    .calc-in { padding: clamp(1.25rem, 2.5vw, 1.75rem); }
+
+    .calc h2 { font-size: 1.22rem; }
+
+    .calc .hint {
+      color: var(--text-muted);
+      font-size: .9rem;
+      margin: .4rem 0 1.1rem;
+    }
+
+    .calc label {
+      display: block;
+      font-weight: 600;
+      font-size: .93rem;
+      margin-bottom: .4rem;
+    }
+
+    .calc input[type=date] {
+      font: inherit;
+      font-size: 1.05rem;
+      width: 100%;
+      min-width: 0;
+      min-height: 48px;
+      padding: .7rem .8rem;
+      border: 2px solid var(--text-muted);
+      border-radius: 2px;
+      background: #fff;
+      color: var(--text);
+    }
+
+    .calc input[type=date]:focus {
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    .calc-row {
+      display: flex;
+      gap: .6rem;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .calc-row > div { flex: 1 1 190px; min-width: 0; }
+
+    /* Buttons */
+    .btn {
+      --bs-btn-border-radius: 2px;
+      --bs-btn-border-width: 2px;
+      --bs-btn-font-weight: 700;
+      --bs-btn-padding-x: 1.35rem;
+      --bs-btn-padding-y: .72rem;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      --bs-btn-bg: var(--blue);
+      --bs-btn-border-color: var(--blue);
+      --bs-btn-hover-bg: var(--blue-dark);
+      --bs-btn-hover-border-color: var(--blue-dark);
+      --bs-btn-active-bg: var(--blue-dark);
+      --bs-btn-active-border-color: var(--blue-dark);
+    }
+
+    .btn-quiet {
+      --bs-btn-color: var(--blue);
+      --bs-btn-bg: transparent;
+      --bs-btn-border-color: var(--blue);
+      --bs-btn-hover-color: var(--blue-dark);
+      --bs-btn-hover-bg: #eaf3fb;
+      --bs-btn-hover-border-color: var(--blue);
+      --bs-btn-active-color: var(--blue-dark);
+      --bs-btn-active-bg: #eaf3fb;
+      --bs-btn-active-border-color: var(--blue);
+    }
+
+    /* Status */
+    .status {
+      margin-top: 1.4rem;
+      border-left: 7px solid var(--line-strong);
+      padding: .9rem 0 .9rem 1rem;
+      background: #fafafa;
+    }
+
+    .status[data-state="open"] { border-left-color: var(--open); }
+    .status[data-state="soon"] { border-left-color: var(--soon); }
+    .status[data-state="closed"] { border-left-color: var(--closed); }
+
+    .status .verdict {
+      font-size: 1.32rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin: 0 0 .2rem;
+    }
+
+    .status[data-state="open"] .verdict { color: var(--open); }
+    .status[data-state="soon"] .verdict { color: var(--soon); }
+    .status[data-state="closed"] .verdict { color: var(--closed); }
+
+    .status p { margin: 0; font-size: .95rem; color: var(--text-muted); }
+
+    .status .count {
+      display: block;
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      line-height: 1;
+      margin: .5rem 0 .1rem;
+    }
+
+    /* Ruler */
+    .ruler { margin: 1.5rem 0 .25rem; position: relative; height: 64px; }
+
+    .ruler .track { position: absolute; left: 0; right: 0; top: 26px; height: 6px; background: var(--line); }
+    .ruler .zone { position: absolute; top: 26px; height: 6px; background: var(--open); }
+    .ruler .tick { position: absolute; top: 14px; width: 2px; height: 30px; background: var(--text-muted); }
+    .ruler .tick.end { background: var(--ink); width: 3px; height: 38px; top: 10px; }
+
+    .ruler .lbl {
+      position: absolute;
+      top: 52px;
+      font-size: .72rem;
+      color: var(--text-muted);
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .ruler .lbl.right { transform: translateX(-100%); }
+
+    .ruler .you { position: absolute; top: 0; transform: translateX(-50%); text-align: center; }
+    .ruler .you b { display: block; font-size: .7rem; color: var(--ink); font-weight: 700; margin-bottom: 2px; }
+
+    .ruler .you i {
+      display: block;
+      width: 0;
+      height: 0;
+      margin: 0 auto;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 9px solid var(--ink);
+    }
+
+    /* Personal schedule */
+    .sched { margin-top: 1.35rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+    .sched h3 { font-size: .95rem; margin-bottom: .65rem; }
+
+    .sched dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .45rem 1rem;
+      font-size: .92rem;
+    }
+
+    .sched dt { font-weight: 700; color: var(--ink); white-space: nowrap; }
+    .sched dd { margin: 0; color: var(--text-muted); }
+
+    /* =========================================================
+       Facts strip
+       ========================================================= */
+    .facts {
+      background: var(--gray-band);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact { padding: 1.6rem 1.5rem 1.6rem 0; }
+    .facts .col-md-4 + .col-md-4 .fact { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+
+    .fact b {
+      display: block;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+
+    .fact span {
+      display: block;
+      font-size: .92rem;
+      color: var(--text-muted);
+      margin-top: .35rem;
+      max-width: 30ch;
+    }
+
+    /* =========================================================
+       Sections
+       ========================================================= */
+    section { padding: clamp(2.75rem, 6vw, 4.5rem) 0; }
+
+    .sec-head { max-width: var(--measure); margin-bottom: 2rem; }
+    .sec-head h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; }
+    .sec-head p { color: var(--text-muted); margin: .7rem 0 0; }
+
+    .band {
+      background: var(--gray-band);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* =========================================================
+       Checklist
+       ========================================================= */
+    .steps { border-top: 2px solid var(--ink); }
+    .step { border-bottom: 1px solid var(--line); }
+
+    .step-when {
+      height: 100%;
+      padding: 1.6rem 1rem 1.6rem 0;
+      border-right: 2px solid var(--line);
+      text-align: right;
+    }
+
+    .step-when b {
+      display: block;
+      font-size: 1.9rem;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .step-when span {
+      display: block;
+      font-size: .74rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: .3rem;
+    }
+
+    @media (min-width: 992px) {
+      .step-when-col { flex: 0 0 120px; width: 120px; }
+    }
+
+    .step-body { padding: 1.6rem 0 1.7rem .5rem; }
+    .step-body h3 { font-size: 1.22rem; margin-bottom: .15rem; }
+    .step-body .timing { color: var(--text-muted); font-size: .9rem; margin: 0 0 .9rem; }
+
+    .step-body ol,
+    .step-body ul { margin: .5rem 0 0; padding-left: 1.15rem; }
+
+    .step-body li { margin-bottom: .55rem; }
+    .step-body ol { list-style: lower-alpha; }
+
+    .recs {
+      margin-top: .55rem;
+      border-left: 3px solid var(--line);
+      padding-left: 1rem;
+    }
+
+    .recs h4 { font-size: .95rem; margin-bottom: .15rem; }
+    .recs p { font-size: .9rem; color: var(--text-muted); margin: 0 0 .55rem; }
+    .recs p:last-child { margin-bottom: 0; }
+
+    .note {
+      background: #fff8e6;
+      border-left: 5px solid var(--soon);
+      padding: .75rem 1rem;
+      font-size: .92rem;
+      margin-top: 1rem;
+    }
+
+    .mail {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: .85rem 1rem;
+      font-size: .92rem;
+      margin-top: .9rem;
+    }
+
+    .mail b { display: block; }
+
+    .actions { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.6rem; }
+
+    /* =========================================================
+       Resources
+       ========================================================= */
+    .tabs {
+      display: flex;
+      gap: .25rem;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--line);
+    }
+
+    .tabs button {
+      font: inherit;
+      font-weight: 700;
+      font-size: .98rem;
+      cursor: pointer;
+      background: none;
+      border: 0;
+      min-height: 48px;
+      padding: .8rem 1.15rem;
+      color: var(--text-muted);
+      border-bottom: 4px solid transparent;
+      margin-bottom: -2px;
+    }
+
+    .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--blue); }
+
+    .panel { padding-top: 1.6rem; }
+    .panel[hidden] { display: none; }
+
+    .reslist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0 2.5rem;
+    }
+
+    .reslist li { border-bottom: 1px solid var(--line); padding: .95rem 0; }
+    .reslist a { font-weight: 700; text-decoration: none; font-size: 1.02rem; }
+    .reslist a:hover { text-decoration: underline; }
+    .reslist p { margin: .2rem 0 0; font-size: .88rem; color: var(--text-muted); }
+
+    /* =========================================================
+       FAQ (Bootstrap collapse, original look)
+       ========================================================= */
+    .faq-group { margin-bottom: 2.5rem; }
+    .faq-group:last-child { margin-bottom: 0; }
+
+    .faq-group > h3 {
+      font-size: 1.05rem;
+      color: var(--ink);
+      padding-bottom: .6rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .qa { border-bottom: 1px solid var(--line); }
+
+    .qa > button {
+      font: inherit;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      min-height: 48px;
+      padding: 1.05rem 2.5rem 1.05rem 0;
+      font-weight: 700;
+      font-size: 1.02rem;
+      color: var(--text);
+      position: relative;
+      line-height: 1.35;
+    }
+
+    .qa > button:hover { color: var(--blue); }
+
+    .qa > button::after {
+      content: "";
+      position: absolute;
+      right: .55rem;
+      top: 1.45rem;
+      width: 11px;
+      height: 11px;
+      border-right: 2.5px solid var(--blue);
+      border-bottom: 2.5px solid var(--blue);
+      transform: rotate(45deg);
+      transition: transform .18s ease;
+    }
+
+    .qa > button[aria-expanded="true"]::after { transform: rotate(-135deg); }
+
+    .qa .ans-in {
+      padding: 0 0 1.2rem;
+      max-width: var(--measure);
+      font-size: .97rem;
+    }
+
+    .qa .ans-in p:last-child { margin-bottom: 0; }
+    .qa .ans-in ul { padding-left: 1.15rem; margin: .6rem 0 0; }
+    .qa .ans-in li { margin-bottom: .6rem; }
+
+    /* =========================================================
+       Footer
+       ========================================================= */
+    footer {
+      background: var(--ink-2);
+      color: #c9d5e2;
+      padding: 2.5rem 0;
+      padding-bottom: max(2.5rem, env(safe-area-inset-bottom));
+      font-size: .9rem;
+    }
+
+    footer a { color: #9fd4ff; }
+    footer a:hover { color: #fff; }
+    footer h4 { color: #fff; font-size: .95rem; margin-bottom: .55rem; }
+    footer ul { list-style: none; margin: 0; padding: 0; }
+    footer li { margin-bottom: .4rem; }
+    footer img { display: block; height: auto; }
+    footer .seal { max-width: 110px; }
+    .vcl { display: inline-block; max-width: 215px; }
+
+    .foot-legal {
+      border-top: 1px solid rgba(255, 255, 255, .15);
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      font-size: .82rem;
+      color: #93a6ba;
+    }
+
+    .foot-legal p { margin: 0; }
+    .foot-legal a { color: #93a6ba; text-decoration: none; }
+    .foot-legal a:hover { color: #fff; text-decoration: underline; }
+
+    /* =========================================================
+       Below lg (<992px): collapsed nav, stacked hero & steps
+       (keeps bdd.tapevents.mil mobile behavior)
+       ========================================================= */
+    @media (max-width: 991.98px) {
+      .mast .wrap { gap: .5rem; min-height: 60px; }
+
+      .mast .navbar-collapse {
+        flex-basis: 100%;
+        margin: 0 calc(-1 * var(--pad));
+        border-top: 1px solid var(--line);
+      }
+
+      .mast .navbar-nav { gap: 0; }
+
+      .mast .nav-link {
+        display: flex;
+        padding: .7rem var(--pad);
+        border-bottom: 1px solid var(--line);
+        border-left: 4px solid transparent;
+      }
+
+      .mast .navbar-nav .nav-link:last-child { border-bottom: 0; }
+
+      .mast .nav-link:hover,
+      .mast .nav-link:focus {
+        border-bottom-color: var(--line);
+        border-left-color: var(--blue);
+        background: #f7f9fb;
+      }
+
+      .step-when {
+        height: auto;
+        border-right: 0;
+        text-align: left;
+        padding: 1.4rem 0 .2rem;
+        display: flex;
+        align-items: baseline;
+        gap: .6rem;
+      }
+
+      .step-when span { margin-top: 0; }
+      .step-body { padding: 0 0 1.6rem; }
+    }
+
+    /* =========================================================
+       Below md (<768px): phone layout
+       ========================================================= */
+    @media (max-width: 767.98px) {
+      :root { --pad: 1rem; }
+      body { font-size: 16px; }
+      main section { scroll-margin-top: 1rem; }
+
+      .mast { position: relative; }
+
+      .brand img { width: min(230px, 70vw); }
+
+      .hero > .wrap { padding-top: 2rem; padding-bottom: 2rem; }
+      .hero h1 { font-size: clamp(2rem, 10vw, 2.6rem); }
+      .hero .lede { font-size: 1.05rem; margin-top: .9rem; }
+
+      .calc { box-shadow: 0 10px 28px rgba(0, 0, 0, .24); }
+      .calc-in { padding: 1.1rem; }
+      .calc-row { display: grid; grid-template-columns: 1fr; align-items: stretch; }
+      .calc-row .btn { width: 100%; }
+
+      /* Facts stay centered and stacked, divided by rules */
+      .facts .row { --bs-gutter-y: 0; }
+      .fact,
+      .facts .col-md-4 + .col-md-4 .fact { padding: 1.25rem 0; border-left: 0; }
+      .facts .col-md-4 + .col-md-4 { border-top: 1px solid var(--line); }
+      .fact span { margin-left: auto; margin-right: auto; }
+      .fact b { font-size: 1.7rem; }
+
+      section { padding: 2.5rem 0; }
+      .sec-head { margin-bottom: 1.4rem; }
+      .step-when { padding-top: 1.15rem; }
+      .step-when b { font-size: 1.55rem; }
+      .step-body ol,
+      .step-body ul { padding-left: 1.3rem; }
+      .note,
+      .mail { padding: .75rem .8rem; }
+      .actions { margin-top: 1.25rem; }
+
+      .tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+      .tabs button { padding: .7rem .4rem; line-height: 1.25; }
+      .panel { padding-top: 1rem; }
+
+      .qa > button { padding-top: .9rem; padding-bottom: .9rem; }
+      .qa > button::after { top: 1.25rem; right: .4rem; }
+
+      footer { padding-top: 2rem; }
+      .foot-legal { line-height: 1.8; }
+    }
+
+    @media (max-width: 480px) {
+      .usa-banner__header .wrap { align-items: flex-start; }
+
+      .usa-banner__header-text {
+        display: grid;
+        grid-template-columns: 16px minmax(0, 1fr);
+        column-gap: .5rem;
+        row-gap: 0;
+        width: 100%;
+        padding: .4rem 0;
+        line-height: 1.35;
+      }
+
+      .usa-banner__flag { margin-top: .2rem; }
+      .usa-banner__button { grid-column: 2; justify-self: start; min-height: 36px; }
+      .usa-banner__guidance { grid-template-columns: 32px 1fr; gap: .7rem; }
+      .usa-banner__icon { width: 32px; height: 32px; }
+
+      .calc-in { padding: 1rem; }
+      .status { border-left-width: 5px; padding: .8rem .6rem .8rem .8rem; }
+      .status .count { font-size: 2.2rem; }
+      .ruler { margin-top: 1.25rem; }
+      .ruler .lbl { font-size: .64rem; letter-spacing: -.01em; }
+
+      .sched dl { grid-template-columns: 1fr; gap: .05rem; }
+      .sched dt { white-space: normal; }
+      .sched dd { margin-bottom: .55rem; }
+      .sched dd:last-child { margin-bottom: 0; }
+
+      .reslist { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 340px) {
+      .tabs { grid-template-columns: 1fr; }
+      .tabs button { border-bottom-width: 3px; margin-bottom: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+
+    @media print {
+      .usa-banner,
+      .mast,
+      .hero,
+      .facts,
+      #resources,
+      #faq,
+      footer,
+      .actions,
+      .skip {
+        display: none !important;
+      }
+
+      body { font-size: 11pt; }
+      .step { break-inside: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- Government banner -->
+  <div class="usa-banner" aria-label="Official government website">
+    <div class="usa-banner__header">
+      <div class="wrap container">
+        <p class="usa-banner__header-text">
+          <svg class="usa-banner__flag" viewBox="0 0 16 10" role="img" aria-label="U.S. flag">
+            <rect width="16" height="10" fill="#fff" />
+            <path fill="#b50938" d="M0 0h16v1H0zm0 2h16v1H0zm0 2h16v1H0zm0 2h16v1H0zm0 2h16v1H0z" />
+            <path fill="#1a4480" d="M0 0h7v5H0z" />
+            <path fill="#fff" d="M1 1h1v1H1zm2 0h1v1H3zm2 0h1v1H5zM2 3h1v1H2zm2 0h1v1H4z" />
+          </svg>
+          <span>An official website of the United States government</span>
+          <button class="usa-banner__button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#gov-banner-content" aria-expanded="false" aria-controls="gov-banner-content">Here’s how
+            you know</button>
+        </p>
+      </div>
+    </div>
+
+    <div class="usa-banner__content collapse" id="gov-banner-content">
+      <div class="wrap container">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="usa-banner__guidance">
+              <svg class="usa-banner__icon" viewBox="0 0 40 40" aria-hidden="true">
+                <circle cx="20" cy="20" r="20" fill="#d9e8f6" />
+                <path fill="currentColor"
+                  d="M8 17.5 20 10l12 7.5v2.3H8v-2.3Zm2.5 4.2h3v7h-3v-7Zm5.3 0h3v7h-3v-7Zm5.4 0h3v7h-3v-7Zm5.3 0h3v7h-3v-7ZM8 30.2h24V33H8v-2.8Z" />
+              </svg>
+              <p><strong>Official websites use .mil</strong>A <strong class="inline">.mil</strong> website belongs to
+                an official U.S. Department of Defense organization.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="usa-banner__guidance">
+              <svg class="usa-banner__icon" viewBox="0 0 40 40" aria-hidden="true">
+                <circle cx="20" cy="20" r="20" fill="#d9e8f6" />
+                <path fill="currentColor"
+                  d="M27.5 18h-1v-3.2a6.5 6.5 0 0 0-13 0V18h-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h15a2 2 0 0 0 2-2V20a2 2 0 0 0-2-2Zm-10.7-3.2a3.2 3.2 0 0 1 6.4 0V18h-6.4v-3.2Z" />
+              </svg>
+              <p><strong>Secure .mil websites use HTTPS</strong>A lock (<svg class="usa-banner__lock"
+                  viewBox="0 0 12 16" aria-hidden="true">
+                  <path fill="currentColor"
+                    d="M10.5 7H10V4a4 4 0 0 0-8 0v3h-.5A1.5 1.5 0 0 0 0 8.5v6A1.5 1.5 0 0 0 1.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-6A1.5 1.5 0 0 0 10.5 7ZM4 4a2 2 0 0 1 4 0v3H4V4Z" />
+                </svg>) or <strong class="inline">https://</strong> means you’ve safely connected to the .mil website.
+                Share sensitive information only on official, secure websites.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Masthead: horizontal nav on desktop, collapsible menu below 992px -->
+  <header class="mast navbar navbar-expand-lg">
+    <div class="wrap container">
+      <a class="brand navbar-brand" href="#main">
+        <img src="./DOW-Logo.png" alt="U.S. Department of War" width="300" height="72">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+        aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <nav class="collapse navbar-collapse justify-content-end" id="primaryNav" aria-label="Primary">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#checklist">Checklist</a>
+          <a class="nav-link" href="#resources">Resources</a>
+          <a class="nav-link" href="#faq">FAQ</a>
+          <!-- <a class="nav-link" href="#future">Newsroom</a> -->
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero + calculator -->
+    <div class="hero">
+      <div class="wrap container">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-6">
+            <p class="kicker"></p>
+            <h1>File for VA benefits before you leave active duty.</h1>
+            <p class="lede">If a medical condition is connected to your service — big or small — you can file
+              while you are still on active duty and get a rating decision before you separate. You can file while you
+              are still on active duty with a goal of receiving a decision on your claim 30 days after you separate.
+            </p>
+            <div class="hero-body">
+              <p>You file between <strong>180 and 90 days</strong> before your separation date. The VA
+                schedules and completes your exams while you are still in uniform, then issues a decision on your claim
+                after you separate. If your claim is approved, tax-free compensation typically begins <strong>30 to 60
+                  days after you separate</strong>.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="calc" id="calculator">
+              <div class="calc-in">
+                <h2>Find your filing window</h2>
+                <p class="hint">Enter your separation or retirement date. Nothing is stored or sent.</p>
+
+                <div class="calc-row">
+                  <div>
+                    <label for="sepdate">Separation date</label>
+                    <input type="date" id="sepdate">
+                  </div>
+                  <button class="btn btn-primary" id="calcbtn" type="button">Calculate</button>
+                </div>
+
+                <div class="status" id="status" data-state="idle" role="status" aria-live="polite">
+                  <p class="verdict" id="verdict">Enter your date</p>
+                  <p id="detail">Your window opens 180 days before you separate and closes 90 days before. There are
+                    no waivers or extensions.</p>
+                </div>
+
+                <div class="ruler" id="ruler" hidden aria-hidden="true">
+                  <div class="track"></div>
+                  <div class="zone" style="left:14.3%;right:42.9%"></div>
+                  <div class="tick" style="left:14.3%"></div>
+                  <div class="tick" style="left:57.1%"></div>
+                  <div class="tick end" style="left:calc(100% - 3px)"></div>
+                  <div class="lbl" style="left:14.3%">Window opens</div>
+                  <div class="lbl" style="left:57.1%">Window closes</div>
+                  <div class="lbl right" style="left:100%">Separation</div>
+                  <div class="you" id="you" hidden><b>Today</b><i></i></div>
+                </div>
+
+                <div class="sched" id="sched" hidden>
+                  <h3>Your dates</h3>
+                  <dl id="schedlist"></dl>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Facts strip -->
+    <div class="facts">
+      <div class="wrap container">
+        <div class="row g-0 text-center text-md-start">
+          <div class="col-md-4">
+            <div class="fact">
+              <b>180–90</b>
+              <span>Days before separation — the only window in which a BDD claim can be filed.</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fact">
+              <b>45</b>
+              <span>Days after filing during which you must stay available for a VA exam.</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="fact">
+              <b>30–60</b>
+              <span>Days after separation before an approved claim begins paying.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <section id="checklist">
+      <div class="wrap container">
+        <div class="sec-head">
+          <h2>Your pathway to a successful claim</h2>
+          <p>There are <b>four steps</b> tied to how much service time you have left. Most claims that miss the BDD
+            window miss it because the records were not ready, so start here.</p>
+        </div>
+
+        <div class="steps">
+
+          <article class="step">
+            <div class="row g-0">
+              <div class="col-12 col-lg-auto step-when-col">
+                <div class="step-when"><b>1</b><span>12–6 months out</span></div>
+              </div>
+              <div class="col-12 col-lg">
+                <div class="step-body ps-lg-4">
+                  <h3>Prepare early</h3>
+                  <p class="timing">Start as soon as you know your separation date.</p>
+                  <ol>
+                    <li><a href="https://www.va.gov/">Create your VA.gov account</a> so you can manage your benefits
+                      online.</li>
+                    <li>Secure a complete copy of your physical and mental health treatment records, inpatient and
+                      outpatient — ideally around 7 months before separation, so they are in hand when you need them.
+                      <div class="recs">
+                        <h4>Service Treatment Records (STR)</h4>
+                        <p>The official chronological healthcare file maintained by the Department of War. Includes
+                          your entrance physical and all periodic health assessments, plus physical, mental health, and
+                          dental records.</p>
+                        <h4>Civilian healthcare records</h4>
+                        <p>Notes, test results, and documents from a private doctor, civilian hospital, or network
+                          specialist. These may not automatically transfer or link to the military electronic health
+                          record — you have to collect them yourself.</p>
+                        <h4>VA health care system records</h4>
+                        <p>Most often applies to prior service and National Guard members.</p>
+                      </div>
+                    </li>
+                    <li>Review your records for accuracy. They should reflect every injury or illness you incurred or
+                      aggravated on active duty.</li>
+                  </ol>
+                  <div class="note">If a condition was never documented, the VA has nothing to rate. Visit the clinic
+                    before you transition so a complete record actually exists.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="row g-0">
+              <div class="col-12 col-lg-auto step-when-col">
+                <div class="step-when"><b>2</b><span>8–6 months out</span></div>
+              </div>
+              <div class="col-12 col-lg">
+                <div class="step-body ps-lg-4">
+                  <h3>Get expert help</h3>
+                  <p class="timing">Schedule an appointment with a VA-accredited representative to review your STRs and
+                    prepare the claim you will submit 180 days before you separate.</p>
+                  <ol>
+                    <li>A representative can help you gather evidence, file the claim, and communicate with the VA on
+                      your behalf.</li>
+                    <li>These services are always free for your VA benefit claim.</li>
+                    <li><a href="https://www.va.gov/get-help-from-accredited-representative/find-rep/">Find an
+                        accredited representative or state and county VSO</a>.</li>
+                  </ol>
+                  <div class="note">If someone is not accredited by the VA, they cannot represent you before the VA or
+                    file a claim on your behalf.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="row g-0">
+              <div class="col-12 col-lg-auto step-when-col">
+                <div class="step-when"><b>3</b><span>180–90 days out</span></div>
+              </div>
+              <div class="col-12 col-lg">
+                <div class="step-body ps-lg-4">
+                  <h3>Submit your BDD claim</h3>
+                  <p class="timing">Filing online at VA.gov is fastest. You can also file through your accredited
+                    representative.</p>
+                  <ol>
+                    <li>The BDD window opens 180 days before your separation date and closes 90 days before it.</li>
+                    <li>A complete claim is three things: your application, your signed Separation Health Assessment
+                      (SHA) Part A, and your Service Treatment Records.</li>
+                    <li><a href="https://www.benefits.va.gov/compensation/docs/SHA_DBQ_Part_A_Self-Assessment.pdf">Download
+                        the SHA Part A self-assessment (PDF)</a>.</li>
+                  </ol>
+                  <div class="mail">
+                    <b>Filing by mail</b>
+                    Department of Veterans Affairs Claims Intake Center, PO Box 4444, Janesville, WI 53547-4444. Mailed
+                    applications must be <em>received</em> by the VA no later than 90 days before your separation date
+                    — postmark does not count.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="row g-0">
+              <div class="col-12 col-lg-auto step-when-col">
+                <div class="step-when"><b>4</b><span>Within 45 days of filing</span></div>
+              </div>
+              <div class="col-12 col-lg">
+                <div class="step-body ps-lg-4">
+                  <h3>Attend your VA exam</h3>
+                  <p class="timing">The VA will schedule a Compensation and Pension (C&amp;P) exam within 45 days of your
+                    submission.</p>
+                  <ol>
+                    <li>The exam plays a crucial role in establishing whether your condition is linked to your service.
+                    </li>
+                    <li>It also documents the severity of the disability, if one is found.</li>
+                  </ol>
+                  <div class="note">Stay available for the full 45 days. Command teams are expected to provide the
+                    flexibility for you to attend.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="button" onclick="window.print()">Print this checklist</button>
+          <a class="btn btn-quiet" href="#calculator">Back to the calculator</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="band">
+      <div class="wrap container">
+        <div class="sec-head">
+          <h2>Where to go next</h2>
+          <p>Official sources for the claim itself, and for the other programs that help you land on your feet.</p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Resource categories">
+          <button type="button" role="tab" id="tab-bdd" aria-controls="p-bdd" aria-selected="true">Filing your
+            claim</button>
+          <button type="button" role="tab" id="tab-other" aria-controls="p-other" aria-selected="false"
+            tabindex="-1">Transition support programs</button>
+        </div>
+
+        <div class="panel" id="p-bdd" role="tabpanel" aria-labelledby="tab-bdd" tabindex="0">
+          <ul class="reslist">
+            <li><a href="https://www.va.gov/">VA.gov</a>
+              <p>Create an account, file, and track your claim.</p>
+            </li>
+            <li><a href="https://benefits.va.gov/benefits/benefits-delivery-discharge-program.asp">Benefits Delivery at
+                Discharge</a>
+              <p>VA's program page, including current eligibility rules.</p>
+            </li>
+            <li><a href="https://www.va.gov/get-help-from-accredited-representative/find-rep/">Find an accredited
+                representative</a>
+              <p>Free help preparing and filing your initial claim.</p>
+            </li>
+            <li><a href="https://www.benefits.va.gov/compensation/docs/SHA_DBQ_Part_A_Self-Assessment.pdf">Separation
+                Health Assessment — Part A</a>
+              <p>The self-assessment you submit with your claim.</p>
+            </li>
+            <li><a href="https://myaccess.dmdc.osd.mil/identitymanagement/app/login">DS Logon</a>
+              <p>Sign in to DoW self-service systems and records.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="panel" id="p-other" role="tabpanel" aria-labelledby="tab-other" tabindex="0" hidden>
+          <ul class="reslist">
+            <li><a href="https://www.mypatriotcareer.mil/">Project Patriot Pipeline</a>
+              <p>Career pathways for transitioning service members.</p>
+            </li>
+            <li><a href="https://www.militaryonesource.mil">Military OneSource</a>
+              <p>Around-the-clock support for you and your family.</p>
+            </li>
+            <li><a href="https://www.tapevents.mil/courses">Transition Assistance Program</a>
+              <p>Required and elective transition courses.</p>
+            </li>
+            <li><a href="https://www.skillbridge.mil/">SkillBridge</a>
+              <p>Civilian work experience during your last 180 days of service.</p>
+            </li>
+            <li><a href="https://www.yellowribbon.mil/courses">Yellow Ribbon Reintegration Program</a>
+              <p>Events for National Guard and Reserve members and families.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap container">
+        <div class="sec-head">
+          <h2>Questions service members actually ask</h2>
+          <p>Grouped by what tends to hold people up: worries about clearance, the timeline itself, and how exams
+            work.</p>
+        </div>
+
+        <div class="faq-group">
+          <h3>The timeline and what a complete claim contains</h3>
+
+          <div class="qa">
+            <button type="button" id="q1" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="false"
+              aria-controls="a1">When exactly does the BDD window open and close?</button>
+            <div class="collapse" id="a1" role="region" aria-labelledby="q1">
+              <div class="ans-in">
+                <p>The BDD window is strictly active between 180 and 90 days before your official separation or
+                  retirement date. There are absolutely no waivers or extensions for this timeline. Submitting a claim
+                  even one day late — 89 days or fewer before discharge — automatically disqualifies you from BDD
+                  fast-track routing. Calculate your exact dates with the <a href="#calculator">calculator above</a>
+                  and commit them to your calendar and memory.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button" id="q2" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false"
+              aria-controls="a2">What happens if I miss the 90-day cutoff?</button>
+            <div class="collapse" id="a2" role="region" aria-labelledby="q2">
+              <div class="ans-in">
+                <p>You are no longer eligible for the BDD fast track. You can still file before you separate, but the
+                  claim will be processed as a Standard Claim and will be processed after discharge.</p>
+                <p>There are no waivers or extensions. A claim submitted one day late — 89 days or fewer before
+                  discharge — is automatically disqualified from BDD fast-track routing.</p>
+                <p>If you miss the window you can still submit a copy of your STR before separating. Include a statement
+                  with your claim including the date of submission and stating your availability to attend VA exams for
+                  45 days. If all conditions are met, the VA will request your VA exams before you separate.</p>
+                <p><strong>What happens after I file?</strong></p>
+                <ul>
+                  <li>Once you transition to Veteran status, you will receive a rating from the Veterans Benefits
+                    Administration assessing the severity of your service-connected conditions. A rating of 10% or
+                    higher confirms your eligibility for benefits tied to that rating — including healthcare,
+                    employment training, and a range of federal and state programs. <a
+                      href="https://www.va.gov/disability/about-disability-ratings/">Read more about the VA's disability
+                      rating system</a>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button" id="q3" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false"
+              aria-controls="a3">What is the Separation Health Assessment Part A, and how do I get it?</button>
+            <div class="collapse" id="a3" role="region" aria-labelledby="q3">
+              <div class="ans-in">
+                <p>The SHA Part A is a comprehensive self-assessment of your medical history and is required for BDD
+                  eligibility. To avoid delays, complete it, sign it, and upload it at the same time as your initial
+                  claim (VA Form 21-526EZ). Three ways to get it:</p>
+                <ul>
+                  <li><strong>Download it (recommended).</strong> The interactive PDF is available from the VA.gov
+                    pre-discharge claims portal or the VA benefits DBQ page.</li>
+                  <li><strong>During online filing.</strong> VA.gov gives you a direct download link at the
+                    supporting-documents step.</li>
+                  <li><strong>Through a representative.</strong> A VA Military Services Coordinator or accredited
+                    Veterans Service Officer can provide a copy and upload it to your file.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button" id="q4" data-bs-toggle="collapse" data-bs-target="#a4" aria-expanded="false"
+              aria-controls="a4">Do I have to collect and upload my own Service Treatment Records?</button>
+            <div class="collapse" id="a4" role="region" aria-labelledby="q4">
+              <div class="ans-in">
+                <p>Partly. The VA has a duty to assist and will coordinate with DoW to obtain your Service Treatment
+                  Record, and you may also provide it directly if you can. But if you received care outside DoW or VA,
+                  the VA may not be able to obtain those records for you — you will need to supply them. This is why it
+                  matters to visit the clinic before you transition, so a complete record exists in the first place.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <h3>Exams and exclusions</h3>
+
+          <div class="qa">
+            <button type="button" id="q5" data-bs-toggle="collapse" data-bs-target="#a5" aria-expanded="false"
+              aria-controls="a5">How available do I have to be for VA exams?</button>
+            <div class="collapse" id="a5" role="region" aria-labelledby="q5">
+              <div class="ans-in">
+                <p>You must remain fully available to attend VA compensation and pension exams for the 45 days
+                  immediately following your claim submission. Command teams and NCO leadership are expected to provide
+                  the operational flexibility for you to make those appointments.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button" id="q6" data-bs-toggle="collapse" data-bs-target="#a6" aria-expanded="false"
+              aria-controls="a6">What if I am stationed overseas?</button>
+            <div class="collapse" id="a6" role="region" aria-labelledby="q6">
+              <div class="ans-in">
+                <p>Service members stationed outside the continental United States must still attend all scheduled
+                  exams to keep BDD priority processing. The VA coordinates exam services in more than 140 countries
+                  using local in-person exams, telehealth, and traveling providers. A local provider is not always
+                  available, so some members need to travel to complete the exam.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button" id="q7" data-bs-toggle="collapse" data-bs-target="#a7" aria-expanded="false"
+              aria-controls="a7">Which claims are excluded from BDD fast-track processing?</button>
+            <div class="collapse" id="a7" role="region" aria-labelledby="q7">
+              <div class="ans-in">
+                <p>A claim is routed to standard processing if any of the following apply:</p>
+                <ul>
+                  <li>A new condition, illness, or injury is added fewer than 90 days before discharge. The new
+                    condition may not be processed until after discharge. A new condition added with less than 90 days
+                    on active duty will be processed separately from your previously submitted BDD claim.</li>
+                  <li>The claim requires special case management — for example very seriously injured or ill members,
+                    or cases involving the loss of a body part.</li>
+                  <li>You are actively enrolled in the Integrated Disability Evaluation System.</li>
+                  <li>The claim involves a terminally ill service member.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <h3>Clearance and privacy</h3>
+
+          <div class="qa">
+            <button type="button" id="q8" data-bs-toggle="collapse" data-bs-target="#a8" aria-expanded="false"
+              aria-controls="a8">Does getting mental health counseling put my security clearance at risk?</button>
+            <div class="collapse" id="a8" role="region" aria-labelledby="q8">
+              <div class="ans-in">
+                <p>No. Seeking mental healthcare is a proactive step that protects your career. Under Security Executive
+                  Agent Directive 4 (SEAD 4), seeking counseling is encouraged and is not by itself disqualifying for a
+                  clearance. Leaving a condition untreated is the actual risk to your clearance and your readiness.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="qa">
+            <button type="button" id="q9" data-bs-toggle="collapse" data-bs-target="#a9" aria-expanded="false"
+              aria-controls="a9">What does the SF-86 actually require me to report about mental health?</button>
+            <div class="collapse" id="a9" role="region" aria-labelledby="q9">
+              <div class="ans-in">
+                <p>The mental health question on the SF-86 was rewritten to remove the stigma around routine care.
+                  Counseling strictly related to service in an active combat zone, to marital or family matters, or to
+                  grief and bereavement does not have to be reported. Reporting is required only for specific
+                  circumstances such as court-ordered treatment, hospitalization, or a narrow set of clinical
+                  diagnoses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-group">
+          <h3>Action plan for leadership</h3>
+
+          <div class="qa">
+            <button type="button" id="q10" data-bs-toggle="collapse" data-bs-target="#a10" aria-expanded="false"
+              aria-controls="a10">When should command teams start reviewing the transition readiness of
+              personnel?</button>
+            <div class="collapse" id="a10" role="region" aria-labelledby="q10">
+              <div class="ans-in">
+                <p>Leadership must operationalize health readiness early in the military lifecycle. Commanders and NCOs
+                  must mandate a formal Service Treatment Record audit for personnel at nine months from separation.
+                  This allows ample time to identify undocumented conditions, schedule "proactive maintenance" clinic
+                  visits, and ensure files are complete before the 180–90-day BDD window opens.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-3">
+          <img class="seal" src="./DOW-Seal-small.png" alt="U.S. Department of War" width="110" height="110">
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+          <h4>File</h4>
+          <ul>
+            <li><a href="https://www.va.gov/">VA.gov</a></li>
+            <li><a href="https://benefits.va.gov/benefits/benefits-delivery-discharge-program.asp">About BDD</a></li>
+            <li><a href="https://www.va.gov/get-help-from-accredited-representative/find-rep/">Find a
+                representative</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <h4>Transition programs</h4>
+          <ul>
+            <li><a href="https://www.tapevents.mil/courses">Transition Assistance Program</a></li>
+            <li><a href="https://www.skillbridge.mil/">SkillBridge</a></li>
+            <li><a href="https://www.yellowribbon.mil/courses">Yellow Ribbon</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+          <h4>Immediate help</h4>
+          <p style="margin:0 0 .9rem">Crisis support for service members, veterans and their families, available at
+            any hour.</p>
+          <a class="vcl" href="https://www.veteranscrisisline.net/get-help-now/military-crisis-line/">
+            <img src="./VeteransCrisisLine.png" alt="Veterans Crisis Line. Dial 988 then press 1." width="215"
+              height="88">
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-legal">
+        <p>
+          <a href="https://www.war.gov/Legal-Administrative/Privacy-Security/">Privacy &amp; Security</a> |
+          <a href="https://www.war.gov/Legal-Administrative/Links-Disclaimer/">Links Disclaimer</a> |
+          <a href="https://dowcio.war.gov/508/">Section 508</a> |
+          <a href="https://www.war.gov/resources/social-media-policy/">Social Media Policy</a> |
+          <a href="http://dodcio.defense.gov/DoD-Web-Policy/">Web Policy</a> |
+          <a href="http://www.esd.whs.mil/DD/plainlanguage/">Plain Writing Act</a> |
+          <a href="https://www.dodig.mil/">DOW IG</a> |
+          <a href="https://policy.war.gov/Offices/Civilian-Harm-Mitigation-and-Response/">Reporting Civilian
+            Casualties</a> |
+          <a href="https://prhome.war.gov/NoFear/">No FEAR Act</a> |
+          <a href="https://www.dma.mil/Services/Visual-Information/References/Limitations/">Imagery Use</a> |
+          <a href="https://www.esd.whs.mil/FOID/">FOIA</a> |
+          <a href="http://open.defense.gov/">Open GOV</a> |
+          <a
+            href="https://dam.defense.gov/Portals/47/Documents/Strategic%20Management%20Plan/FY26-30%20DoW%20Strategic%20Plan%206Apr2026%20r18.pdf">Strategic
+            Management Plan</a> |
+          <a href="https://www.usa.gov/">USA.gov</a> |
+          <a href="https://business.defense.gov/">Office of Industrial Base Growth</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://static.skillbridge.mil/lib/bootstrap/5.3.3/bootstrap.min.js"></script>
+  <script>
+    (function () {
+      // Government banner, primary nav and FAQ answers use Bootstrap's collapse
+      // plugin (data-bs-toggle), so no custom toggle code is needed for them.
+
+      // Close the mobile menu after a nav link is chosen
+      var primaryNav = document.getElementById('primaryNav');
+      if (primaryNav && window.bootstrap) {
+        primaryNav.querySelectorAll('.nav-link').forEach(function (link) {
+          link.addEventListener('click', function () {
+            if (primaryNav.classList.contains('show')) {
+              bootstrap.Collapse.getOrCreateInstance(primaryNav).hide();
+            }
+          });
+        });
+      }
+
+      // ---- Filing-window calculator ----
+      var MS = 86400000;
+      function fmt(d) { return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }); }
+      function addDays(d, n) { var x = new Date(d.getTime()); x.setDate(x.getDate() + n); return x; }
+      function plural(n, w) { return n + ' ' + w + (Math.abs(n) === 1 ? '' : 's'); }
+
+      var input = document.getElementById('sepdate');
+      var status = document.getElementById('status');
+      var verdict = document.getElementById('verdict');
+      var detail = document.getElementById('detail');
+      var ruler = document.getElementById('ruler');
+      var you = document.getElementById('you');
+      var sched = document.getElementById('sched');
+      var schedlist = document.getElementById('schedlist');
+
+      function run() {
+        var v = input.value;
+        if (!v) {
+          status.dataset.state = 'idle';
+          verdict.textContent = 'Enter your date';
+          detail.textContent = 'Your window opens 180 days before you separate and closes 90 days before. There are no waivers or extensions.';
+          ruler.hidden = true; sched.hidden = true;
+          return;
+        }
+        var parts = v.split('-');
+        var sep = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+        var now = new Date(); var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        var days = Math.round((sep - today) / MS);
+        var opens = addDays(sep, -180), closes = addDays(sep, -90);
+
+        var state, count, head, body;
+        if (days < 0) {
+          state = 'closed'; count = null;
+          head = 'That date has passed';
+          body = 'BDD applies only before separation. If you have already separated, you can still file a disability claim with VA at any time — start at VA.gov.';
+        } else if (days > 180) {
+          state = 'soon'; count = days - 180;
+          head = 'days until your window opens';
+          body = 'Too early to file, but not too early to prepare. Your window opens ' + fmt(opens) + '. Use this time to create your VA.gov account and start pulling your medical records.';
+        } else if (days >= 90) {
+          state = 'open'; count = days - 90;
+          head = 'days left to file';
+          body = 'Your window is open now and closes ' + fmt(closes) + '. File online at VA.gov, or through an accredited representative.';
+        } else {
+          state = 'closed'; count = null;
+          head = 'Your window has closed';
+          body = 'You are ' + plural(days, 'day') + ' from separation, so BDD fast-track routing is no longer available. You can still file before you separate — the claim will be processed after discharge as a Fully Developed or Standard Claim. See the question below on missing the cutoff.';
+        }
+
+        status.dataset.state = state;
+        verdict.innerHTML = (count === null ? '' : '<span class="count">' + count + '</span>') + head;
+        detail.textContent = body;
+
+        // Ruler: 210-day scale ending at separation
+        ruler.hidden = false;
+        if (days >= 0 && days <= 210) {
+          you.hidden = false;
+          you.style.left = (((210 - days) / 210) * 100) + '%';
+        } else { you.hidden = true; }
+
+        // Personal schedule
+        var rows = [
+          ['Start preparing', fmt(addDays(sep, -365)) + ' onward'],
+          ['Request your medical records', 'By ' + fmt(addDays(sep, -210))],
+          ['Meet an accredited representative', fmt(addDays(sep, -240)) + ' – ' + fmt(opens)],
+          ['Window opens', fmt(opens)],
+          ['Window closes', fmt(closes)],
+          ['Separation', fmt(sep)]
+          // ['Earliest expected first payment', fmt(addDays(sep, 30)) + ' – ' + fmt(addDays(sep, 60))]
+        ];
+        schedlist.innerHTML = rows.map(function (r) {
+          return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>';
+        }).join('');
+        sched.hidden = false;
+      }
+
+      document.getElementById('calcbtn').addEventListener('click', run);
+      input.addEventListener('change', run);
+      input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); run(); } });
+
+      // ---- Resource tabs ----
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role=tab]'));
+      function select(t) {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', String(on));
+          x.tabIndex = on ? 0 : -1;
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+        t.focus();
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { select(t); });
+        t.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowRight') { e.preventDefault(); select(tabs[(i + 1) % tabs.length]); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); select(tabs[(i - 1 + tabs.length) % tabs.length]); }
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
