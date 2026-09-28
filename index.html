@@ -54,6 +54,12 @@
       --bs-border-radius: 2px;
     }
 
+    /* Set here as well as in Bootstrap so widths include padding and border
+       even if the Bootstrap stylesheet is slow or blocked */
+    *,
+    *::before,
+    *::after { box-sizing: border-box; }
+
     html {
       -webkit-text-size-adjust: 100%;
       scroll-behavior: smooth;
@@ -363,27 +369,76 @@
       margin-bottom: .5rem;
     }
 
-    .calc input[type=date] {
-      font: inherit;
-      font-size: 1.05rem;
-      width: 100%;
-      min-width: 0;
-      min-height: 44px;
-      padding: .375rem .75rem;
+    /* iOS Safari gives date inputs a built-in minimum width and ignores
+       width:100%, so the visible box is drawn by .date-wrap, which always
+       matches the card width; anything wider inside it is clipped. */
+    .date-wrap {
+      position: relative;
+      overflow: hidden;
       border: 2px solid var(--text-muted);
       border-radius: 2px;
       background: #fff;
+    }
+
+    .date-wrap:focus-within {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 .2rem rgba(0, 94, 162, .15);
+    }
+
+    /* Keyboard focus ring sits on the wrapper so the clipping can't hide it */
+    .date-wrap:has(input:focus-visible) {
+      outline: 3px solid #ffbe2e;
+      outline-offset: 2px;
+    }
+
+    .calc input[type=date] {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      font: inherit;
+      font-size: 1.05rem;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      margin: 0;
+      padding: .375rem .75rem;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
       color: var(--text);
     }
 
-    .calc input[type=date]:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 .2rem rgba(0, 94, 162, .15) !important;
-      outline: none;
+    /* Without native appearance iOS centers the value; keep it left-aligned */
+    .calc input[type=date]::-webkit-date-and-time-value { text-align: left; }
+
+    .calc input[type=date]:focus,
+    .calc input[type=date]:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
     }
 
     .calc-row { margin-bottom: 1.5rem; }
     .calc-field { margin-bottom: 1rem; }
+
+    /* Touch browsers (iOS Safari in particular) show an empty date field with
+       no hint, so overlay one until a date is picked. */
+    .date-ph {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0 .6rem 0 .75rem;
+      background: #fff;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      pointer-events: none;
+    }
+
+    @media (pointer: coarse) {
+      .date-wrap:not(.has-value) .date-ph { display: block; }
+    }
 
     .calc-row .btn {
       width: 100%;
@@ -1024,7 +1079,10 @@
                 <div class="calc-row">
                   <div class="calc-field">
                     <label for="sepdate">Separation date</label>
-                    <input type="date" id="sepdate">
+                    <div class="date-wrap" id="datewrap">
+                      <input type="date" id="sepdate">
+                      <span class="date-ph" aria-hidden="true">mm/dd/yyyy</span>
+                    </div>
                   </div>
                   <button class="btn btn-primary" id="calcbtn" type="button">Calculate</button>
                 </div>
@@ -1615,6 +1673,13 @@
         }).join('');
         sched.hidden = false;
       }
+
+      // Hide the touch-device mm/dd/yyyy hint once a date is chosen
+      var datewrap = document.getElementById('datewrap');
+      function syncHint() { datewrap.classList.toggle('has-value', !!input.value); }
+      input.addEventListener('input', syncHint);
+      input.addEventListener('change', syncHint);
+      syncHint();
 
       document.getElementById('calcbtn').addEventListener('click', run);
       input.addEventListener('change', run);
