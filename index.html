@@ -336,28 +336,31 @@
     /* =========================================================
        Calculator
        ========================================================= */
+    /* Card look matches the previous bdd.tapevents.mil calculator:
+       white rounded card, light shadow, stacked field and full-width button */
     .calc {
       background: var(--white);
       color: var(--text);
-      border-top: 6px solid var(--blue);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, .28);
+      border: 0;
+      border-radius: .375rem;
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
     }
 
-    .calc-in { padding: clamp(1.25rem, 2.5vw, 1.75rem); }
+    .calc-in { padding: 3rem; }
 
-    .calc h2 { font-size: 1.22rem; }
+    .calc h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: .5rem; }
 
     .calc .hint {
       color: var(--text-muted);
-      font-size: .9rem;
-      margin: .4rem 0 1.1rem;
+      font-size: .875em;
+      margin: 0 0 1.5rem;
     }
 
     .calc label {
       display: block;
       font-weight: 600;
       font-size: .93rem;
-      margin-bottom: .4rem;
+      margin-bottom: .5rem;
     }
 
     .calc input[type=date] {
@@ -365,8 +368,8 @@
       font-size: 1.05rem;
       width: 100%;
       min-width: 0;
-      min-height: 48px;
-      padding: .7rem .8rem;
+      min-height: 44px;
+      padding: .375rem .75rem;
       border: 2px solid var(--text-muted);
       border-radius: 2px;
       background: #fff;
@@ -375,17 +378,20 @@
 
     .calc input[type=date]:focus {
       border-color: var(--blue);
+      box-shadow: 0 0 0 .2rem rgba(0, 94, 162, .15) !important;
       outline: none;
     }
 
-    .calc-row {
-      display: flex;
-      gap: .6rem;
-      align-items: flex-end;
-      flex-wrap: wrap;
-    }
+    .calc-row { margin-bottom: 1.5rem; }
+    .calc-field { margin-bottom: 1rem; }
 
-    .calc-row > div { flex: 1 1 190px; min-width: 0; }
+    .calc-row .btn {
+      width: 100%;
+      min-height: 44px;
+      --bs-btn-border-radius: .375rem;
+      --bs-btn-border-width: 1px;
+      --bs-btn-padding-y: .375rem;
+    }
 
     /* Buttons */
     .btn {
@@ -425,8 +431,10 @@
 
     /* Status */
     .status {
-      margin-top: 1.4rem;
+      margin: 0 0 1rem;
+      border: 1px solid transparent;
       border-left: 7px solid var(--line-strong);
+      border-radius: .375rem;
       padding: .9rem 0 .9rem 1rem;
       background: #fafafa;
     }
@@ -437,9 +445,9 @@
 
     .status .verdict {
       font-size: 1.32rem;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -.02em;
-      margin: 0 0 .2rem;
+      margin: 0 0 .25rem;
     }
 
     .status[data-state="open"] .verdict { color: var(--open); }
@@ -457,13 +465,22 @@
       margin: .5rem 0 .1rem;
     }
 
-    /* Ruler */
-    .ruler { margin: 1.5rem 0 .25rem; position: relative; height: 64px; }
+    /* Ruler: thin rounded track, light-blue filing zone, dark ticks */
+    .ruler { margin: 1.5rem 0; position: relative; height: 68px; }
 
-    .ruler .track { position: absolute; left: 0; right: 0; top: 26px; height: 6px; background: var(--line); }
-    .ruler .zone { position: absolute; top: 26px; height: 6px; background: var(--open); }
-    .ruler .tick { position: absolute; top: 14px; width: 2px; height: 30px; background: var(--text-muted); }
-    .ruler .tick.end { background: var(--ink); width: 3px; height: 38px; top: 10px; }
+    .ruler .track {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 16px;
+      height: 8px;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: .375rem;
+    }
+
+    .ruler .zone { position: absolute; top: 16px; height: 8px; background: #cfe2ff; }
+    .ruler .tick { position: absolute; top: 12px; width: 2px; height: 16px; background: #212529; }
 
     .ruler .lbl {
       position: absolute;
@@ -490,20 +507,13 @@
       border-top: 9px solid var(--ink);
     }
 
-    /* Personal schedule */
-    .sched { margin-top: 1.35rem; border-top: 1px solid var(--line); padding-top: 1rem; }
-    .sched h3 { font-size: .95rem; margin-bottom: .65rem; }
-
-    .sched dl {
-      margin: 0;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: .45rem 1rem;
-      font-size: .92rem;
-    }
-
-    .sched dt { font-weight: 700; color: var(--ink); white-space: nowrap; }
-    .sched dd { margin: 0; color: var(--text-muted); }
+    /* Personal schedule: stacked label / date pairs */
+    .sched { margin-top: 1.5rem; border-top: 1px solid #dee2e6; padding-top: 1rem; }
+    .sched h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+    .sched dl { margin: 0; }
+    .sched dt { font-weight: 700; color: var(--text); }
+    .sched dd { margin: 0 0 .5rem; color: var(--text); }
+    .sched dd:last-child { margin-bottom: 0; }
 
     /* =========================================================
        Facts strip
@@ -816,10 +826,7 @@
       .hero h1 { font-size: clamp(2rem, 10vw, 2.6rem); }
       .hero .lede { font-size: 1.05rem; margin-top: .9rem; }
 
-      .calc { box-shadow: 0 10px 28px rgba(0, 0, 0, .24); }
-      .calc-in { padding: 1.1rem; }
-      .calc-row { display: grid; grid-template-columns: 1fr; align-items: stretch; }
-      .calc-row .btn { width: 100%; }
+      .calc-in { padding: 1.5rem; }
 
       /* Facts stay centered and stacked, divided by rules */
       .facts .row { --bs-gutter-y: 0; }
@@ -868,16 +875,8 @@
       .usa-banner__guidance { grid-template-columns: 32px 1fr; gap: .7rem; }
       .usa-banner__icon { width: 32px; height: 32px; }
 
-      .calc-in { padding: 1rem; }
-      .status { border-left-width: 5px; padding: .8rem .6rem .8rem .8rem; }
       .status .count { font-size: 2.2rem; }
-      .ruler { margin-top: 1.25rem; }
-      .ruler .lbl { font-size: .64rem; letter-spacing: -.01em; }
-
-      .sched dl { grid-template-columns: 1fr; gap: .05rem; }
-      .sched dt { white-space: normal; }
-      .sched dd { margin-bottom: .55rem; }
-      .sched dd:last-child { margin-bottom: 0; }
+      .ruler .lbl { font-size: .63rem; letter-spacing: -.01em; }
 
       .reslist { grid-template-columns: minmax(0, 1fr); }
     }
@@ -1023,7 +1022,7 @@
                 <p class="hint">Enter your separation or retirement date. Nothing is stored or sent.</p>
 
                 <div class="calc-row">
-                  <div>
+                  <div class="calc-field">
                     <label for="sepdate">Separation date</label>
                     <input type="date" id="sepdate">
                   </div>
@@ -1041,7 +1040,7 @@
                   <div class="zone" style="left:14.3%;right:42.9%"></div>
                   <div class="tick" style="left:14.3%"></div>
                   <div class="tick" style="left:57.1%"></div>
-                  <div class="tick end" style="left:calc(100% - 3px)"></div>
+                  <div class="tick" style="left:calc(100% - 2px)"></div>
                   <div class="lbl" style="left:14.3%">Window opens</div>
                   <div class="lbl" style="left:57.1%">Window closes</div>
                   <div class="lbl right" style="left:100%">Separation</div>
